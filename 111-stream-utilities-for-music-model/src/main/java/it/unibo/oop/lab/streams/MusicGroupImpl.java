@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -61,8 +62,8 @@ public final class MusicGroupImpl implements MusicGroup {
     @Override
     public int countSongsInNoAlbum() {
         return (int) songs.stream()
-                .filter(t -> albums.keySet().stream().map(p -> Optional.of(p)).toList().contains(t.getAlbumName()))
-                .count();
+        .filter(s -> s.getAlbumName().isEmpty())
+        .count();
     }
 
     @Override
